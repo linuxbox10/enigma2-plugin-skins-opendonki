@@ -1,0 +1,432 @@
+
+<skin>
+	<screen name="ListTemplate">
+		<widget name="list"
+                position="518,381"
+                size="1374,597"
+                foregroundColor="white"
+                foregroundColorSelected="white"
+                foregroundColorEvent="tvguidecolor"
+                foregroundColorEventSelected="white"
+                foregroundColorMarked="white"
+                foregroundColorMarkedSelected="tvguidecolor"
+                foregroundColorServiceNotAvail="notavailable"
+                backgroundColor="mid"
+                backgroundColorSelected="bg-selected-text"
+                backgroundColorMarked="black"
+                backgroundColorMarkedSelected="bg-selected-text"
+                colorServiceRecorded="red"
+                serviceItemHeight="54"
+                serviceNameFont="Regular;30"
+                serviceInfoFont="Regular;30"
+                serviceNumberFont="Regular;30"
+                picServiceEventProgressbar="o-progressbars/progress-50-4.png"
+                progressbarHeight="6"
+                progressbarBorderWidth="2"
+                progressBarWidth="75"
+                colorEventProgressbar="colour2"
+                colorEventProgressbarSelected="colour2"
+                colorEventProgressbarBorder="white"
+                colorEventProgressbarBorderSelected="white"
+                fieldMargins="8"
+                nonplayableMargins="8"
+                itemsDistances="8"
+                transparent="1"
+                scrollbarMode="showNever"
+                />
+	</screen>
+	
+	<!--/lib/python/Screens/ChannelSelection.py -->
+	<screen name="ChannelSelection" flags="wfNoBorder" position="0,0" size="1920,1080" backgroundColor="mid">
+	        <panel name="background" />
+		<panel name="tv" />
+		<panel name="date" />
+		
+		<panel name="button-bg" />
+                <panel name="divider1" />
+		<panel name="ListTemplate" />
+		<widget source="Title" render="Label" position="519,300" size="921,54" font="Bold;30" transparent="1" foregroundColor="white" backgroundColor="topmid" />
+		<panel name="h-separator-tr" />
+		<panel name="v-separator-tr" />
+		<!-- now name -->
+		<widget source="ServiceEvent" render="Label" position="527,32" size="905,39" font="Bold;30" foregroundColor="colour2" backgroundColor="topmid" noWrap="1" transparent="1">
+			<convert type="EventName">NowName</convert>
+		</widget>
+		<!-- now description -->
+		<widget source="ServiceEvent" render="RunningText" options="movetype=running,startpoint=0,direction=top,steptime=80,repeat=0,always=0,oneshot=0,startdelay=6000,wrap" position="527,75" size="905,174" foregroundColor="white" backgroundColor="topmid" font="Regular;30" transparent="1">
+			<convert type="EventName">FullDescription</convert>
+		</widget>
+		<!-- picon -->
+		<widget source="Service" render="Picon" position="1500,38" size="150,90" alphatest="blend">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<!-- now duration -->
+		<widget source="ServiceEvent" render="Label" position="1500,137" size="390,36" font="Regular;30" foregroundColor="white" backgroundColor="topright" transparent="1">
+			<convert type="EventTime">Duration</convert>
+			<convert type="Slyk18ClockToText">Slyk18AsLength</convert>
+		</widget>
+		<!-- now times -->
+		<widget source="ServiceEvent" render="Label" position="1500,179" size="390,36" font="Regular;30" foregroundColor="white" backgroundColor="topright" transparent="1">
+			<convert type="EventTime">Elapsed</convert>
+			<convert type="Slyk18RemainingToText">OnlyMinute</convert>
+		</widget>
+		<!-- progress bar -->
+		<widget source="ServiceEvent" render="Progress" pixmap="o-progressbars/progress-260-6.png" position="1500,234" size="390,9" backgroundColor="#00000000" borderWidth="0" transparent="0">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<!-- next programme -->
+		<widget source="ServiceEvent" render="Label" position="50,383" size="390,66" font="Bold;27" foregroundColor="colour2" backgroundColor="midright" transparent="1">
+			<convert type="EventName">NextName</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="50,444" size="390,33" font="Regular;27" foregroundColor="white" backgroundColor="midright" noWrap="1" transparent="1">
+			<convert type="EventTime">NextStartTime</convert>
+			<convert type="Slyk18ClockToText">Slyk18StartedAt</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="50,512" size="390,327" font="Regular;23" foregroundColor="white" backgroundColor="midright" transparent="1">
+			<convert type="EventName">NextDescription</convert>
+		</widget>
+		<!-- Next Events List -->
+		<panel name="h-separator-br" />
+		<widget source="ServiceEvent" render="OnyxNextEvents" position="50,906" size="390,74" font="Regular;21" start="2" lines="3" foregroundColor="white" backgroundColor="botright" noWrap="1" transparent="1">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<panel position="1683,47" size="207,75">
+			<panel name="channel-icons" />
+		</panel>
+		<panel name="New-Buttons" />
+		<panel name="MenuButton" />
+		<panel name="InfoButton-pos2" />
+	</screen>
+	
+	<!-- Auto Timers > menu > import from EPG -->
+	<screen name="SimpleChannelSelection" position="0,0" size="1920,1080" backgroundColor="mid" flags="wfNoBorder">
+		<panel name="template1" />
+		<widget source="Title" render="Label" position="519,320" size="921,54" font="Bold;29" transparent="1" foregroundColor="white" backgroundColor="topmid" />
+		<panel name="h-separator-tr" />
+		<panel name="ListTemplate" />
+		<panel name="New-Buttons" />
+	</screen>
+	
+	<!--  alternative channel list service mode - available via context menu -->
+	<screen name="SlimChannelSelection" position="0,0" size="1920,1080" backgroundColor="mid" flags="wfNoBorder">
+	
+		<panel name="channel_select_obh" />
+	</screen>
+	
+	<!-- alternative radio mode = no -->
+	<screen name="ChannelSelectionRadio" position="0,0" size="1920,1080" backgroundColor="mid" flags="wfNoBorder">
+		<panel name="template1" />
+		<eLabel text="Radio Guide" position="15,675" size="450,291" halign="center" font="Regular;35" transparent="1" foregroundColor="white" backgroundColor="topleft" />
+		<panel name="ListTemplate" />
+		<widget source="Title" render="Label" position="519,300" size="921,54" font="Bold;29" transparent="1" foregroundColor="white" backgroundColor="topmid" />
+		<panel name="h-separator-tr" />
+		<panel name="v-separator-tr" />
+		<!-- now name -->
+		<widget source="ServiceEvent" render="Label" position="527,32" size="905,39" font="Bold;30" foregroundColor="colour2" backgroundColor="topmid" noWrap="1" transparent="1">
+			<convert type="EventName">NowName</convert>
+		</widget>
+		<!-- now description -->
+		<widget source="ServiceEvent" render="RunningText" options="movetype=running,startpoint=0,direction=top,steptime=80,repeat=0,always=0,oneshot=0,startdelay=6000,wrap" position="527,75" size="905,174" foregroundColor="white" backgroundColor="topmid" font="Regular;30" transparent="1">
+			<convert type="EventName">FullDescription</convert>
+		</widget>
+		<!-- picon -->
+		<widget source="Service" render="Picon" position="1500,38" size="150,90" alphatest="blend">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<!-- now duration -->
+		<widget source="ServiceEvent" render="Label" position="1500,137" size="390,36" font="Regular;30" foregroundColor="white" backgroundColor="topright" transparent="1">
+			<convert type="EventTime">Duration</convert>
+			<convert type="Slyk18ClockToText">Slyk18AsLength</convert>
+		</widget>
+		<!-- now times -->
+		<widget source="ServiceEvent" render="Label" position="1500,179" size="390,36" font="Regular;30" foregroundColor="white" backgroundColor="topright" transparent="1">
+			<convert type="EventTime">Elapsed</convert>
+			<convert type="Slyk18RemainingToText">OnlyMinute</convert>
+		</widget>
+		<!-- progress bar -->
+		<widget source="ServiceEvent" render="Progress" pixmap="o-progressbars/progress-260-6.png" position="1500,234" size="390,9" backgroundColor="#00000000" borderWidth="0" transparent="0">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<!-- next programme -->
+		<widget source="ServiceEvent" render="Label" position="1500,383" size="390,66" font="Bold;27" foregroundColor="colour2" backgroundColor="midright" transparent="1">
+			<convert type="EventName">NextName</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="1500,444" size="390,33" font="Regular;27" foregroundColor="white" backgroundColor="midright" noWrap="1" transparent="1">
+			<convert type="EventTime">NextStartTime</convert>
+			<convert type="Slyk18ClockToText">Slyk18StartedAt</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="1500,512" size="390,327" font="Regular;23" foregroundColor="white" backgroundColor="midright" transparent="1">
+			<convert type="EventName">NextDescription</convert>
+		</widget>
+		<!-- Next Events List -->
+		<panel name="h-separator-br" />
+		<widget source="ServiceEvent" render="OnyxNextEvents" position="1500,906" size="390,72" font="Regular;21" start="2" lines="3" foregroundColor="white" backgroundColor="botright" noWrap="1" transparent="1">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<panel position="1683,47" size="207,75">
+			<panel name="channel-icons" />
+		</panel>
+		<panel name="New-Buttons" />
+		<panel name="MenuButton" />
+		<panel name="InfoButton-pos2" />
+	</screen>
+	
+	<!-- not used in this skin so hidden -->
+	<screen name="RadioInfoBar" position="0,0" size="0,0" backgroundColor="mid" flags="wfNoBorder" />
+	
+	<!-- channel select menu -->
+	<screen name="ChannelContextMenu" position="0,0" size="1920,1080" backgroundColor="mid" flags="wfNoBorder">
+		<panel name="template1" />
+		<panel name="h-separator-tr" />
+		<panel name="title2" />
+		<widget name="menu" position="527,321" size="954,630" foregroundColor="white" backgroundColor="mid" backgroundColorSelected="bg-selected-text" selectionPixmap="o-selectbars/select-636-48.png" backgroundPixmap="o-selectbars/blank.png" itemHeight="72" font="Regular;35" transparent="1" enableWrapAround="1" scrollbarMode="showNever" />
+		<panel name="whatson-top" />
+		<panel name="whatson-right" />
+	</screen>
+	
+	<!-- prev / next button -->
+	<screen name="HistoryZapSelector" position="0,0" size="522,1080" backgroundColor="transparent" flags="wfNoBorder">
+		<!-- <eLabel position="0,0" size="494,1080" backgroundColor="blackglass" transparent="0"  />    -->
+		<ePixmap pixmap="o-backgrounds/history-zap.png" position="0,0" size="522,1080" alphatest="blend" zPosition="-1" />
+		<widget source="Title" render="Label" position="0,0" size="485,240" font="Regular;48" foregroundColor="white" backgroundColor="blackglass" valign="center" halign="center" transparent="1" />
+		<widget source="menu" render="Listbox" position="30,242" size="425,768" foregroundColor="white" backgroundColor="blackglass" foregroundColorSelected="white" backgroundColorSelected="blackglass" selectionPixmap="o-selectbars/history-zap.png" scrollbarMode="showNever" transparent="1">
+			<convert type="TemplatedMultiContent">{"template": [
+						MultiContentEntryText(pos = (15, 20), size = (230, 42), font = 1, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2, color = 0x00ffffff, color_sel = 0x00ffffff), # Servicename
+						MultiContentEntryText(pos = (15, 56), size = (230, 30), font = 2, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 3, color = 0x00ffffff, color_sel = 0x00ffffff), # Eventname
+						MultiContentEntryText(pos = (15, 81), size = (230, 30), font = 3, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 5, color = 0x00ffffff, color_sel = 0x00ffffff), # Eventtime
+						MultiContentEntryPixmapAlphaBlend(pos=(260, 18), size=(150, 90), png=6, flags = BT_SCALE) # picon
+					],
+				 "fonts": [gFont("Regular",30), gFont("Regular",30), gFont("Regular",21), gFont("Regular",21)],
+				 "itemHeight": 128
+				}</convert>
+		</widget>
+	</screen>
+	
+	<!-- record button on channel select -->
+	<screen name="RecordTimerQuestion" position="center,center" size="360,105" backgroundColor="transparent" flags="wfNoBorder" zPosition="10">
+		<ePixmap pixmap="o-backgrounds/recordquestion2.png" position="0,0" size="360,105" zPosition="-1" />
+		<widget name="text" position="0,0" size="0,0" font="Regular;33" />
+		<widget name="list" position="8,8" size="345,90" font="Regular;32" foregroundColor="white" backgroundColor="bg-selected" backgroundColorSelected="bg-selected" selectionPixmap="o-selectbars/select-230-30.png" itemHeight="45" enableWrapAround="1" scrollbarMode="showNever" transparent="1" />
+	</screen>
+	
+	<!-- remove recording on channel select - 2nd popup-->
+	<screen name="RemoveTimerQuestion" position="center,center" size="755,195" zPosition="10" backgroundColor="messageboxbg">
+		<widget name="text" position="0,0" size="0,0" font="Regular;33" backgroundColor="messageboxbg" transparent="1" />
+		<widget name="list" textOffset="15,0" font="Regular;33" position="15,15" size="330,75" foregroundColor="white" backgroundColor="bg-selected-text" enableWrapAround="1" transparent="1" itemHeight="38"/>
+	<applet type="onLayoutFinish">
+from enigma import getDesktop, eSize, ePoint
+import math
+desktop_w = getDesktop(0).size().width()
+desktop_h = getDesktop(0).size().height()
+count = len(self.list)
+
+width = int(0.40625 * desktop_w)
+itemheight = 25
+
+if desktop_w == 1920:
+	scale = 1.5
+
+else:
+    scale = 1
+
+if not self["text"].text:
+	textsize = (width, 0)
+	listsize = (width, int(math.ceil(itemheight*scale)*count))
+	if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
+		self["list"].instance.move(ePoint(int(math.ceil(65*scale)), 0))
+		wsizex = textsize[0]+int(math.ceil(65*scale))
+	else:
+		self["list"].instance.move(ePoint(0, 0))
+		wsizex = textsize[0]
+	self["list"].instance.resize(eSize(*listsize))
+else:
+	textsize = self["text"].getSize()
+	if textsize[0] &lt; textsize[1]:
+		textsize = (textsize[1],textsize[0]+10)
+	if textsize[0] &gt; width:
+		textsize = (textsize[0], textsize[1]+int(math.ceil(itemheight*scale)))
+	else:
+		textsize = (width, textsize[1]+int(math.ceil(itemheight*scale)))
+	listsize = (textsize[0], int(math.ceil(itemheight*scale)*count))
+
+	self["text"].instance.resize(eSize(*textsize))
+	if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
+		self["text"].instance.move(ePoint(int(math.ceil(65*scale)), 0))
+	else:
+		self["text"].instance.move(ePoint(10, 10))
+
+	if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
+		self["list"].instance.move(ePoint(int(math.ceil(65*scale)), textsize[1]))
+		wsizex = textsize[0]+int(math.ceil(65*scale))
+	else:
+		self["list"].instance.move(ePoint(0, textsize[1]))
+		wsizex = textsize[0]
+	self["list"].instance.resize(eSize(*listsize))
+
+wsizey = textsize[1]+listsize[1]
+wsize = (wsizex, wsizey)
+self.instance.resize(eSize(*wsize))
+self.instance.move(ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
+                </applet>
+	</screen>
+<screen name="channel_select_obh">
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/main-bg.jpg" position="0,0" size="1920,1080" zPosition="-2" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/button-bg-r.png" position="0,976" size="1920,102" alphatest="blend" zPosition="-1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/v-divider.png" position="391,1005" size="3,75" alphatest="blend" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/v-divider.png" position="731,1005" size="3,75" alphatest="blend" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/v-divider.png" position="1070,1005" size="3,75" alphatest="blend" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/v-divider.png" position="88,1005" size="3,75" alphatest="blend" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/flare.png" position="205,992" size="375,29" alphatest="blend" zPosition="6" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/flare.png" position="1230,992" size="375,29" alphatest="blend" zPosition="6" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/v-glass-div.png" alphatest="blend" position="1400,0" size="50,1080" zPosition="3" />
+  <ePixmap pixmap="slyk-onyx-1080/o-icons/icon-bg.png" position="1140,50" size="45,30" alphatest="blend" zPosition="1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-icons/icon-bg.png" position="1194,50" size="45,30" alphatest="blend" zPosition="1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-icons/icon-bg.png" position="1248,50" size="45,30" alphatest="blend" zPosition="1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-icons/icon-bg.png" position="1302,50" size="45,30" alphatest="blend" zPosition="1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-icons/icon-bg.png" position="1140,89" size="45,30" alphatest="blend" zPosition="1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-icons/icon-bg.png" position="1194,89" size="45,30" alphatest="blend" zPosition="1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-icons/icon-bg.png" position="1248,89" size="45,30" alphatest="blend" zPosition="1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-icons/icon-bg.png" position="1302,89" size="45,30" alphatest="blend" zPosition="1" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/h-divider.png" position="0,270" size="1431,2" alphatest="blend" />
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/v-divider.png" position="969,42" size="3,213" alphatest="blend" />
+  <widget source="Title" render="Label" position="10,300" size="730,54" font="Bold; 26" transparent="1" foregroundColor="white" backgroundColor="topmid" />
+  <widget source="ServiceEvent" render="Label" position="738,300" size="660,54" font="Regular; 26" halign="right" foregroundColor="white" backgroundColor="topmid" transparent="1">
+    <convert type="TransponderInfo">
+    </convert>
+  </widget>
+  <widget source="session.VideoPicture" render="Pig" position="1425,0" size="488,278" backgroundColor="transparent" transparent="1" />
+  <eLabel position="1425,4" size="480,270" backgroundColor="transparent" zPosition="1" />
+  <!-- recording icon -->
+  <widget position="1430,216" size="30,30" source="session.RecordState" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/record.png" alphatest="blend">
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <!-- tv overlay-->
+  <!-- <eLabel  position="0,249" size="480,21" backgroundColor="#0f1015"  zPosition="2" />  -->
+  <widget source="session.CurrentService" render="Label" position="1425,255" size="480,21" font="Bold;18" foregroundColor="white" backgroundColor="blackglass" borderWidth="0" borderColor="black" valign="center" halign="center" noWrap="1" zPosition="3" transparent="0">
+    <convert type="ServiceName">Name</convert>
+  </widget>
+  <ePixmap pixmap="slyk-onyx-1080/o-backgrounds/h-divider.png" position="1425,270" size="480,2" alphatest="blend" />
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/4k.png" position="1140,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">Is4K</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/hd.png" position="1140,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">IsHD</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/sd.png" position="1140,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">IsSD</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/2160.png" position="1194,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">Is4K</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/1080.png" position="1194,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">Is1080</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/720.png" position="1194,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">Is720</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/576.png" position="1194,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">Is576</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/480.png" position="1194,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">Is480</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/16-9.png" position="1248,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">IsWidescreen</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/4-3.png" position="1248,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">IsWidescreen</convert>
+    <convert type="ConditionalShowHide">Invert</convert>
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/dolby.png" position="1302,50" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">IsMultichannel</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/crypt.png" position="1140,89" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">IsCrypted</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/fta.png" position="1140,89" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">IsCrypted</convert>
+    <convert type="ConditionalShowHide">Invert</convert>
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/subs.png" position="1194,89" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">SubtitlesAvailable</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/stream.png" position="1247,89" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">IsStream</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.CurrentService" render="Pixmap" pixmap="slyk-onyx-1080/o-icons/hbb.png" position="1302,89" size="45,30" alphatest="blend" zPosition="2">
+    <convert type="ServiceInfo">HasHBBTV</convert>
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="global.CurrentTime" render="Label" position="1440,1005" size="480,75" font="Regular;30" foregroundColor="white" backgroundColor="botleft" valign="center" halign="center" transparent="1">
+    <convert type="Slyk18ClockToText">Slyk18DateFormat1</convert>
+  </widget>
+  <!-- now name -->
+  <widget source="ServiceEvent" render="Label" position="10,32" size="905,39" font="Bold;30" foregroundColor="colour2" backgroundColor="topmid" noWrap="1" transparent="1">
+    <convert type="EventName">NowName</convert>
+  </widget>
+  <!-- now description -->
+  <widget source="ServiceEvent" render="RunningText" options="movetype=running,startpoint=0,direction=top,steptime=80,repeat=0,always=0,oneshot=0,startdelay=6000,wrap" position="10,75" size="905,174" foregroundColor="white" backgroundColor="topmid" font="Regular;30" transparent="1">
+    <convert type="EventName">FullDescription</convert>
+  </widget>
+  <!-- picon -->
+  <widget source="Service" render="Picon" position="983,38" size="150,90" alphatest="blend">
+    <convert type="ServiceName">Reference</convert>
+  </widget>
+  <!-- now duration -->
+  <widget source="ServiceEvent" render="Label" position="983,137" size="390,36" font="Regular;30" foregroundColor="white" backgroundColor="topright" transparent="1">
+    <convert type="EventTime">Duration</convert>
+    <convert type="Slyk18ClockToText">Slyk18AsLength</convert>
+  </widget>
+  <!-- now times -->
+  <widget source="ServiceEvent" render="Label" position="983,179" size="390,36" font="Regular;30" foregroundColor="white" backgroundColor="topright" transparent="1">
+    <convert type="EventTime">Elapsed</convert>
+    <convert type="Slyk18RemainingToText">OnlyMinute</convert>
+  </widget>
+  <!-- progress bar -->
+  <widget source="ServiceEvent" render="Progress" pixmap="slyk-onyx-1080/o-progressbars/progress-260-6.png" position="983,234" size="390,9" backgroundColor="black" borderWidth="0" transparent="0">
+    <convert type="EventTime">Progress</convert>
+  </widget>
+  <!-- next programme -->
+  <widget source="ServiceEvent" render="Label" position="1500,383" size="390,66" font="Bold;27" foregroundColor="colour2" backgroundColor="midright" transparent="1" halign="left">
+    <convert type="EventName">NextName</convert>
+  </widget>
+  <widget source="ServiceEvent" render="Label" position="1500,444" size="390,33" font="Regular;27" foregroundColor="white" backgroundColor="midright" noWrap="1" transparent="1" halign="left">
+    <convert type="EventTime">NextStartTime</convert>
+    <convert type="Slyk18ClockToText">Slyk18StartedAt</convert>
+  </widget>
+  <widget source="ServiceEvent" render="Label" position="1500,512" size="390,327" font="Regular;23" foregroundColor="white" backgroundColor="midright" transparent="1" halign="left">
+    <convert type="EventName">NextDescription</convert>
+  </widget>
+  <!-- Next Events List -->
+  <panel name="h-separator-br" />
+  <widget source="ServiceEvent" render="OnyxNextEvents" position="1510,906" size="390,74" font="Regular;21" start="2" lines="3" foregroundColor="white" backgroundColor="botright" noWrap="1" transparent="1">
+    <convert type="ServiceName">Reference</convert>
+  </widget>
+  <widget name="list" position="11,375" size="1374,597" foregroundColor="white" foregroundColorSelected="white" foregroundColorEvent="tvguidecolor" foregroundColorEventSelected="white" foregroundColorMarked="white" foregroundColorMarkedSelected="tvguidecolor" foregroundColorServiceNotAvail="notavailable" backgroundColor="mid" backgroundColorSelected="bg-selected-text" backgroundColorMarked="black" backgroundColorMarkedSelected="bg-selected-text" colorServiceRecorded="red" serviceItemHeight="54" serviceNameFont="Regular;30" serviceInfoFont="Regular;30" serviceNumberFont="Regular;30" picServiceEventProgressbar="o-progressbars/progress-50-4.png" progressbarHeight="6" progressbarBorderWidth="2" progressBarWidth="75" colorEventProgressbar="colour2" colorEventProgressbarSelected="colour2" colorEventProgressbarBorder="white" colorEventProgressbarBorderSelected="white" fieldMargins="8" nonplayableMargins="8" itemsDistances="8" transparent="1" scrollbarMode="showNever" />
+  <ePixmap pixmap="slyk-onyx-1080/buttons/key_menu.png" position="8,1027" size="38,38" alphatest="blend" />
+  <ePixmap pixmap="slyk-onyx-1080/buttons/key_info.png" position="52,1027" size="38,38" alphatest="blend" />
+  <ePixmap pixmap="slyk-onyx-1080/buttons/key_red.png" position="103,1027" size="38,38" alphatest="blend" transparent="1" />
+  <ePixmap pixmap="slyk-onyx-1080/buttons/key_yellow.png" position="398,1027" size="38,38" alphatest="blend" transparent="1" />
+  <ePixmap pixmap="slyk-onyx-1080/buttons/key_green.png" position="738,1027" size="38,38" alphatest="blend" transparent="1" />
+  <ePixmap pixmap="slyk-onyx-1080/buttons/key_blue.png" position="1078,1027" size="38,38" alphatest="blend" transparent="1" />
+  <widget name="key_red" position="145,1025" size="285,38" zPosition="1" font="Regular;32" halign="left" valign="center" foregroundColor="white" backgroundColor="button-bg" transparent="1" />
+  <widget name="key_yellow" position="440,1025" size="285,38" zPosition="1" font="Regular;32" halign="left" valign="center" foregroundColor="white" backgroundColor="button-bg" transparent="1" />
+  <widget name="key_green" position="780,1025" size="285,38" zPosition="1" font="Regular;32" halign="left" valign="center" foregroundColor="white" backgroundColor="button-bg" transparent="1" />
+  <widget name="key_blue" position="1120,1025" size="285,38" zPosition="1" font="Regular;32" halign="left" valign="center" foregroundColor="white" backgroundColor="button-bg" transparent="1" />
+</screen>
+</skin>
+
+

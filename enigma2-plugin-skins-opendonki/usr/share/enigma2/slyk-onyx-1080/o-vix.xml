@@ -1,0 +1,69 @@
+<skin>
+	<!-- https://github.com/OpenViX/vix-core/blob/master/src/BackupManager.py -->
+	<screen name="VIXBackupManager" position="0,0" size="1920,1080" flags="wfNoBorder" backgroundColor="mid">
+		<panel name="template1" />
+		<panel name="h-separator-tr" />
+		<widget name="lab1" position="527,75" size="905,174" foregroundColor="white" backgroundColor="topmid" font="Regular;30" transparent="1" />
+		<ePixmap pixmap="o-backgrounds/setup-30-bg.png" alphatest="blend" position="527,329" size="942,630" zPosition="1" />
+		<widget name="list" textOffset="15,3" position="527,330," size="942,630" foregroundColor="white" backgroundColor="bg-selected" font="Regular;30" backgroundColorSelected="bg-selected" selectionPixmap="o-selectbars/select-628-30.png" backgroundPixmap="o-selectbars/blank.png" itemHeight="45" enableWrapAround="1" scrollbarMode="showNever" transparent="1" />
+		<panel name="New-Buttons" />
+		<panel name="InfoButton-pos1" />
+		<panel name="MenuButton" />
+		<applet type="onLayoutFinish">self["list"].instance.setItemHeight(45)</applet>
+	</screen>
+
+	<screen name="VIXBackupManagerMenu" position="0,0" size="1920,1080" backgroundColor="mid" flags="wfNoBorder">
+		<panel name="Setup-Default" />
+		<panel name="HelpWindow" />
+		<panel name="VKeyIcon" />
+	</screen>
+
+	<screen name="VIXBackupManagerLogView" position="0,0" size="1920,1080" flags="wfNoBorder" backgroundColor="mid" title="Backup Log">	
+	        <panel name="template1" />
+                <eLabel position="489,0" size="1431,1005" backgroundColor="black" transparent="0" zPosition="-1" />
+                <widget source="Title" render="Label" position="527,32" size="905,39" font="Bold;30" foregroundColor="colour2" backgroundColor="topmid" noWrap="1" transparent="1" />
+                <widget name="list" position="527,90" size="1335,900" font="Console;18" foregroundColor="white" backgroundColor="black" scrollbarMode="showOnDemand" transparent="1" zPosition="3" />
+                <panel name="New-Buttons" />
+        
+	</screen>
+
+
+	<screen name="VIXImageManager" position="0,0" size="1920,1080" title="Image Manager" flags="wfNoBorder" backgroundColor="mid">
+		<panel name="template1" />
+		<panel name="h-separator-tr" />
+		<widget name="lab1" position="527,75" size="905,174" foregroundColor="white" backgroundColor="topmid" font="Regular;30" transparent="1" />
+		<widget name="list" textOffset="15,3" position="527,330," size="942,630" foregroundColor="white" backgroundColor="bg-selected" font="Regular;30" backgroundColorSelected="bg-selected" selectionPixmap="o-selectbars/select-628-30.png" backgroundPixmap="o-selectbars/blank.png" itemHeight="45" enableWrapAround="1" scrollbarMode="showNever" transparent="1" />
+		<widget name="backupstatus" position="1518,341" size="372,510" font="Regular;27" foregroundColor="colour2" backgroundColor="midright" transparent="1" />
+		<panel name="New-Buttons" />
+		<panel name="InfoButton-pos1" />
+		<panel name="MenuButton" />
+		<applet type="onLayoutFinish">self["list"].instance.setItemHeight(45)</applet>
+	</screen>
+	
+	    <screen name="ImageBackup" position="0,0" size="1920,1080" title="Image Manager" flags="wfNoBorder" backgroundColor="mid">
+                 <panel name="template1" />
+		<panel name="h-separator-tr" />
+		<widget name="lab1" position="527,75" size="905,174" foregroundColor="white" backgroundColor="topmid" font="Regular;30" transparent="1" />
+		<widget name="list" textOffset="15,3" position="527,330," size="942,630" foregroundColor="white" backgroundColor="bg-selected" font="Regular;30" backgroundColorSelected="bg-selected" selectionPixmap="o-selectbars/select-628-30.png" backgroundPixmap="o-selectbars/blank.png" itemHeight="45" enableWrapAround="1" scrollbarMode="showNever" transparent="1" />
+                <panel name="New-Buttons" />
+	
+		<applet type="onLayoutFinish">self["list"].instance.setItemHeight(45)</applet>
+    </screen>
+	<screen name="ImageManagerDownload" position="0,0" size="1920,1080" title="Image Manager" flags="wfNoBorder" backgroundColor="mid">
+	    <panel name="template1" />
+		<panel name="h-separator-tr" />
+		<widget name="lab1" position="527,75" size="905,174" foregroundColor="white" backgroundColor="topmid" font="Regular;30" transparent="1" />
+		<widget name="list" textOffset="15,3" position="527,330," size="942,630" foregroundColor="white" backgroundColor="bg-selected" font="Regular;30" backgroundColorSelected="bg-selected" selectionPixmap="o-selectbars/select-628-30.png" backgroundPixmap="o-selectbars/blank.png" itemHeight="45" enableWrapAround="1" scrollbarMode="showNever" transparent="1" />
+                <panel name="New-Buttons" />
+	
+		<applet type="onLayoutFinish">self["list"].instance.setItemHeight(45)</applet>
+	</screen>
+<!--<screen name="SoftwareUpdateChoices" position="center,center" size="900,640" backgroundColor="messageboxbg">
+<widget name="list" position="0,0" size="900,468" itemHeight="78" font="Regular;30" foregroundColor="white" backgroundColor="messageboxbg" foregroundColorSelected="white" backgroundColorSelected="bg-selected" transparent="0" scrollbarMode="showOnDemand" enableWrapAround="1" />
+<widget name="text" position="0,500" size="900,108" font="Regular;30" foregroundColor="white" backgroundColor="messageboxbg" valign="center" halign="center" transparent="1" />
+	<applet type="onLayoutFinish">self["list"].instance.setItemHeight(78)</applet>
+</screen>-->
+
+</skin>
+
+
